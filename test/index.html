@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        .box{
+    padding: 100px 0;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    background: rgb(200,200,200);
+    margin: 20px;
+    display: inline-block;
+    position: static;
+
+}
+    </style>
+</head>
+<body>
+    <h1>Vue Mouse events og v-if</h1>
+
+    <div id="app">
+    <br>
+    
+    <div class="box" @mouseover="handleMouseover(true)" @mouseleave="handleMouseover(false)">
+        mouseover
+        <br>
+        <span v-if="mouseover1">Musen er hér!</span>
+    </div>
+
+    <div class="box" @mouseover="handleMouseleave(true)" @mouseleave="handleMouseleave(false)">
+        mouseover
+        <br>
+        <span v-if="!mouseover2">Musen er her ikke!</span>
+    </div>
+
+    <div class="box" @dblclick="handleDblckick">
+        double click
+        <br>
+        <span>Jeg er dobbeltklikket {{ dblclick }} gange</span>
+    </div>
+
+    <div class="box" @click="handleMousemove($event, null, 'pause')" @mousemove="handleMousemove($event, 4)">
+        position:  {{ x }}, {{ y }}
+        <br>
+        <span>klik mig for at pause</span>
+    </div>
+
+</div>
+
+<script>
+    const app = Vue.createApp({
+    //template: '<h2>I am a template</h2>'
+
+    data(){
+        return{
+            mouseover1: false,
+            mouseleave1: false,
+            mouseover2: false,
+            mouseleave2: false,
+            dblclick: 0,
+            x: 0,
+            y: 0,
+            changeXY: false
+        }
+    },
+    methods: {
+
+        handleMouseover(x){
+            if(x)
+                this.mouseover1 = true;
+            else if(!x)
+                this.mouseover1 = false;
+        },
+        handleMouseleave(x){
+            if(x)
+                this.mouseover2 = true;
+            else if(!x)
+                this.mouseover2 = false;
+        },
+        handleDblckick(){
+            this.dblclick++;
+        },
+        handleMousemove(e, n, p){
+            if(!this.changeXY) {
+                this.x = e.offsetX;
+                this.y = e.offsetY;
+            }
+            if(p == "pause"){
+                this.changeXY = !this.changeXY;
+            }
+        },
+
+    }
+        
+});
+
+app.mount('#app');
+</script>
+</body>
+</html>
