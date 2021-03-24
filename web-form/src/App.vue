@@ -1,15 +1,12 @@
 <template>
-<signupForm/>
+  <SignupForm />
 </template>
 
 <script>
-import SignupForm from './components/SignupForm.vue';
-
-
-
+import SignupForm from './components/SignupForm'
 export default {
   name: 'App',
-  components: {SignupForm }
+  components: { SignupForm }
 }
 </script>
 
@@ -25,6 +22,5 @@ export default {
 body {
   margin: 0;
   background: #eee;
-
 }
 </style>
