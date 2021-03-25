@@ -1,9 +1,10 @@
 <template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <label>Email:</label>
     <input type="email" required v-model="email" />
 
     <label>Password:</label>
+    <span class="error" v-if="passwordError">&nbsp;&nbsp;{{ passwordError }}</span>
     <input type="password" required v-model="password" />
 
     <label>Species:</label>
@@ -48,6 +49,10 @@
           {{ skill }}
       </span>
     </div>
+
+    <div class="submit">
+      <button>Create Account</button>
+    </div>
   </form>
 
   <p v-if="email">Email: {{ email }}</p>
@@ -57,7 +62,10 @@
   <p v-if="mentors.length > 0">
     Mentors: {{ mentors }} <span v-if="mentors.length == 3">👴👽👽</span>
   </p>
-  <p v-if="skills.length > 0">Skills: {{ skills }}</p>
+  <p v-if="skills.length > 0">
+    Skills: {{ skills }}
+  </p>
+
 </template>
 
 <script>
@@ -71,6 +79,7 @@ export default {
       mentors: [],
       tempSkill: "",
       skills: [],
+      passwordError: "",
     };
   },
   methods: {
@@ -93,6 +102,29 @@ export default {
       } */
       this.skills = this.skills.filter((item) => item != skill )
     },
+    handleSubmit(){
+      console.log('Form Submitted');
+      
+      if(this.password.length < 5){
+        this.passwordError = "password must be atleast 6 characters long";
+        this.password = "";
+      }
+      
+      // Ternary operator if else
+      /* this.passwordError = this.password.length > 5 ? "" 
+        : "Password must be atleast 6 characters long"; */
+
+      if(this.password){ /*  */
+        /* Dette sendes til databasen */
+        console.log("email", this.email);
+        console.log("passowrd", this.password);
+        console.log("role", this.role);
+        console.log("skills", this.skills);
+        console.log("terms accepted", this.terms);
+      }
+
+
+    }
   },
 };
 </script>
@@ -143,5 +175,24 @@ input[type="checkbox"] {
   font-weight: bold;
   color: #777;
   cursor: pointer;
+}
+button{
+  background: #0b6dff;
+  border: 0;
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.submit{
+  text-align: center;
+
+}
+.error{
+  color: #ff0062;
+  margin-top: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
 }
 </style>
