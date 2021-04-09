@@ -1,36 +1,31 @@
 <template>
   <div class="home">
-    Home
-    <p ref="p">My name is {{ name }} and my age is {{ age }}</p>
-    <button @click="handleClick">click me</button>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostList :posts="posts" />
+    </div>
+    <div v-else>
+      <Spinner />
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+// component imports
+import PostList from '../components/PostList'
+import getPosts from '../composables/getPosts'
+import Spinner from '../components/Spinner'
 
 export default {
-  name: "Home",
-  setup() {
-    console.log(this)
+  name: 'Home',
+  components: { PostList, Spinner },
+  setup() { 
+    
+    const { posts, error, load} = getPosts()
 
-    const p = ref(null)
-
-    let name = "Daniel";
-    let age = 30;
-
-    const handleClick = () => {
-      console.log(p, p.value)
-      p.value.classList.add('test')
-      p.value.textContent = 'hello, saiyans'
-      }
-
-    return { name, age, handleClick, p};
+    load()
+    
+    return { posts, error }
   },
-  data(){
-    return {
-      age: 23
-    }
-  }
-};
+}
 </script>
