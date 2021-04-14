@@ -2,12 +2,20 @@
   <div class="welcome container">
     <div v-if="showLogin">
       <h2>Login</h2>
+<<<<<<< HEAD
       <LoginForm @login="enterChat"/>
+=======
+      <LoginForm @login="enterChat" />
+>>>>>>> c50aff4a97388bd2e4077be517b50c66b160f1ca
       <p>No account yet? <span @click="showLogin = false">Signup</span> instead.</p>
     </div>
     <div v-else>
       <h2>Sign up</h2>
+<<<<<<< HEAD
       <SignupForm @signup="enterChat"/>
+=======
+      <SignupForm @signup="enterChat" />
+>>>>>>> c50aff4a97388bd2e4077be517b50c66b160f1ca
       <p>Already registered? <span @click="showLogin = true">Login</span> instead.</p>
     </div>
   </div>

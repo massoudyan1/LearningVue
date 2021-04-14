@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="container">
     <Navbar />
     <NewChatForm />
@@ -26,8 +27,20 @@ export default {
       }
     })
   }
+=======
+  <p>Chatroom</p>
+</template>
+
+<script>
+export default {
+
+>>>>>>> c50aff4a97388bd2e4077be517b50c66b160f1ca
 }
 </script>
 
 <style>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c50aff4a97388bd2e4077be517b50c66b160f1ca
 </style>

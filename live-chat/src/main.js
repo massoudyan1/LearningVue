@@ -5,6 +5,7 @@ import router from './router'
 // import global css
 import './assets/main.css'
 
+<<<<<<< HEAD
 // import firebase auth service before app mount
 import { projectAuth } from './firebase/config'
 
@@ -18,3 +19,6 @@ projectAuth.onAuthStateChanged(() => {
     }
 })
 
+=======
+createApp(App).use(router).mount('#app')
+>>>>>>> c50aff4a97388bd2e4077be517b50c66b160f1ca
