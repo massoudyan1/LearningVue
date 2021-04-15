@@ -1,17 +1,18 @@
-import { ref } from 'vue';
-import { projectAuth } from '../firebase/config';
+import { ref } from 'vue'
+import { projectAuth } from '../firebase/config'
 
-const error = ref(null)
-
+// refs
 const user = ref(projectAuth.currentUser)
 
+// listen for auth changes outside of function
+// so only 1 listener is ever attached
 projectAuth.onAuthStateChanged(_user => {
-    console.log('User state change. current use ris : ' + _user)
-    user.value = _user
-})
+  console.log('User state change. Current user is:', _user)
+  user.value = _user
+});
 
 const getUser = () => {
-    return { user }
+  return { user } 
 }
 
 export default getUser

@@ -26,7 +26,9 @@ export default {
         message: message.value,
         createdAt: timestamp()
       }
+      
       await addDoc(chat)
+      
       if (!error.value) {
         message.value = ''
       }
